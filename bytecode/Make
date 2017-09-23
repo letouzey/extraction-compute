@@ -1,0 +1,9 @@
+-I .
+-R . ExtractionCompute
+CAMLFLAGS = "-I +compiler-libs"
+extrcompute_plugin.mlpack
+compilerlibs.mlpack
+g_extrcompute.ml4
+olambda_byte.ml
+olambda.ml
+ExtractionCompute.v

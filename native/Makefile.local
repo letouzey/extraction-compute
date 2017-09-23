@@ -1,0 +1,15 @@
+
+### Link with compiler-libs stuff ###
+
+compilerlibs.cmxs: fake_terminfo.c
+	$(CAMLOPTLINK) $(CAMLFLAGS) -linkall -shared -o $@ ocamlcommon.cmxa ocamloptcomp.cmxa $^
+
+ExtractionCompute.vo: compilerlibs.cmxs
+
+clean::
+	rm -rf fake_terminfo.o compilerlibs.cmxs
+
+# For emacs:
+# Local Variables:
+# mode: makefile
+# End:
