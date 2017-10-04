@@ -2,3 +2,4 @@
  * Bench !
    - comparison with native_compute / vm_compute
    - compare compiler-libs (dynlinked) with respect to fork ocamlopt
+   - time spent in the reconstruction (from glob_constr to constr)
