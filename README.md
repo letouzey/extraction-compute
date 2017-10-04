@@ -31,6 +31,10 @@ leting Coq process it up to a `constr`. In particular, this allows to re-infer
 type annotations (for instance in lists). But the type-checking time might
 be non-negligible.
 
+### Requirements
+
+OCaml 4.02.* with compiler-libs. TODO: test and adapt for more recent OCaml
+
 ### How to build ?
 
 First, compile a Coq with the needed little patch on extraction, see Coq [PR#1118](https://github.com/coq/coq/pull/1118).
