@@ -28,7 +28,8 @@ at extraction, the term reconstruction done by Extraction Compute will fail.
 
 ### How to build ?
 
-First, compile a Coq with the needed little patch on extraction (TODO: details)
+First, compile a Coq with the needed little patch on extraction, see Coq [PR#1118](https://github.com/coq/coq/pull/1118).
+Then:
 
 ```
 export COQBIN=...
@@ -39,6 +40,13 @@ cd bytecode && make byte
 ### How to install ?
 
 TODO
+
+### How to use ?
+
+```
+Require ExtractionCompute.
+Extraction Compute (1+1).
+```
 
 ### Technical Remarks
 
@@ -53,7 +61,7 @@ a dummy terminfo.o file (normally provided by libasmrun.a), see fake_terminfo.c
 
 Other possible solutions (for the record):
 
-  - Add ̀-cclib -lasmrun_pic` to the compile line (this embed a correct terminfo.c)
+  - Add ̀`-cclib -lasmrun_pic` to the compile line (this embed a correct terminfo.c)
 
   - Build a fat binary with coqkmtop :
 
