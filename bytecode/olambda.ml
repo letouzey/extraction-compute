@@ -343,13 +343,13 @@ type reconstruction_failure =
 exception CannotReconstruct of reconstruction_failure
 
 let mk_hole () =
-  DAst.make
+  CAst.make
     (Glob_term.GHole
        (Evar_kinds.InternalHole, Misctypes.IntroAnonymous, None))
 
 let mk_construct cons args =
-  let head = DAst.make (Glob_term.GRef (ConstructRef cons, None)) in
-  DAst.make (Glob_term.GApp (head, args))
+  let head = CAst.make (Glob_term.GRef (ConstructRef cons, None)) in
+  CAst.make (Glob_term.GApp (head, args))
 
 let rec reconstruct typ o = match typ with
   |Tarr _ -> raise (CannotReconstruct FunctionalValue)
