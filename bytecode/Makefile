@@ -4,7 +4,7 @@
 ##   \VV/  #                                                                 ##
 ##    //   #                                                                 ##
 ###############################################################################
-## GNUMakefile for Coq 8.7+alpha
+## GNUMakefile for Coq 8.8+alpha
 
 # For debugging purposes (must stay here, don't move below)
 INITIAL_VARS := $(.VARIABLES)
@@ -39,10 +39,11 @@ CAMLP4O           := $(COQMF_CAMLP4O)
 CAMLP4BIN         := $(COQMF_CAMLP4BIN)
 CAMLP4LIB         := $(COQMF_CAMLP4LIB)
 CAMLP4OPTIONS     := $(COQMF_CAMLP4OPTIONS)
+CAMLFLAGS         := $(COQMF_CAMLFLAGS)
 HASNATDYNLINK     := $(COQMF_HASNATDYNLINK)
 
 Makefile.conf: Make
-	/home/letouzey/coq-extrcomp/bin/coq_makefile -f Make -o Makefile
+	/home/letouzey/V8/bin/coq_makefile -f Make -o Makefile
 
 # This file can be created by the user to hook into double colon rules or
 # add any other Makefile code he may need
@@ -100,11 +101,11 @@ AFTER ?=
 CAMLDONTLINK=camlp5.gramlib,unix,str
 
 # OCaml binaries
-CAMLC       ?= "$(OCAMLFIND)" ocamlc -c -rectypes -thread
-CAMLOPTC    ?= "$(OCAMLFIND)" opt    -c -rectypes -thread
-CAMLLINK    ?= "$(OCAMLFIND)" ocamlc    -rectypes -thread -linkpkg -dontlink $(CAMLDONTLINK)
-CAMLOPTLINK ?= "$(OCAMLFIND)" opt       -rectypes -thread -linkpkg -dontlink $(CAMLDONTLINK)
-CAMLDOC     ?= "$(OCAMLFIND)" ocamldoc  -rectypes
+CAMLC       ?= "$(OCAMLFIND)" ocamlc   -c
+CAMLOPTC    ?= "$(OCAMLFIND)" opt      -c
+CAMLLINK    ?= "$(OCAMLFIND)" ocamlc   -linkpkg -dontlink $(CAMLDONTLINK)
+CAMLOPTLINK ?= "$(OCAMLFIND)" opt      -linkpkg -dontlink $(CAMLDONTLINK)
+CAMLDOC     ?= "$(OCAMLFIND)" ocamldoc
 CAMLDEP     ?= "$(OCAMLFIND)" ocamldep -slash -ml-synonym .ml4 -ml-synonym .mlpack
 
 # DESTDIR is prepended to all installation paths
@@ -114,8 +115,6 @@ DESTDIR ?=
 CAMLDEBUG ?=
 COQDEBUG ?=
 
-# Extra flags to the OCaml compiler
-CAMLFLAGS ?=
 # Extra packages to be linked in (as in findlib -package)
 CAMLPKGS ?=
 
@@ -174,7 +173,7 @@ COQDOCFLAGS?=-interpolate -utf8 $(COQLIBS_NOML)
 # The version of Coq being run and the version of coq_makefile that
 # generated this makefile
 COQ_VERSION:=$(shell $(COQC) --print-version | cut -d ' ' -f 1)
-COQMAKEFILE_VERSION:=8.7+alpha
+COQMAKEFILE_VERSION:=8.8+alpha
 
 COQSRCLIBS?= $(foreach d,$(COQ_SRC_SUBDIRS), -I "$(COQLIB)$(d)")
 
@@ -749,7 +748,7 @@ printenv::
 # file you can extend the merlin-hook target in Makefile.local
 .merlin:
 	$(SHOW)'FILL .merlin'
-	$(HIDE)echo 'FLG -rectypes -thread' > .merlin
+	$(HIDE)echo 'FLG $(COQMF_CAMLFLAGS)' > .merlin
 	$(HIDE)echo 'B $(COQLIB)' >> .merlin
 	$(HIDE)echo 'S $(COQLIB)' >> .merlin
 	$(HIDE)$(foreach d,$(COQ_SRC_SUBDIRS), \

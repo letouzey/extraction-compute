@@ -1,6 +1,8 @@
 
 ### Link with compiler-libs stuff ###
 
+CAMLFLAGS += -I +compiler-libs
+
 compilerlibs.cmxs: fake_terminfo.c
 	$(CAMLOPTLINK) $(CAMLFLAGS) -linkall -shared -o $@ ocamlcommon.cmxa ocamloptcomp.cmxa $^
 
