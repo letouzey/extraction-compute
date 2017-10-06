@@ -37,7 +37,10 @@ OCaml 4.02.* with compiler-libs. TODO: test and adapt for more recent OCaml
 
 ### How to build ?
 
-First, compile a Coq with the needed little patch on extraction, see Coq [PR#1118](https://github.com/coq/coq/pull/1118).
+First, compile a recent Coq:
+ - at least 6cb18298 (2017-10-06) for the master branch of extraction-compute
+ - at least 8.7+beta2 for the v8.7 branch of extraction-compute
+
 Then:
 
 ```
